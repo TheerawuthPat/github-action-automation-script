@@ -1,0 +1,16 @@
+name: check-conflict
+on:
+  push:
+    branches-ignore:
+       - master
+jobs:
+  check-conflict:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check for merge conflicts
+        uses: mschilde/auto-label-merge-conflicts@master
+        with:
+          CONFLICT_LABEL_NAME: 'Conflicts'
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MAX_RETRIES: 5
+          WAIT_MS: 15000
